@@ -4,26 +4,37 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test-integration",
+    "lint": "eslint .",
+    "prettier": "prettier --write \"./{test,config,controllers,helpers,migrations}/**/*.js\"",
+    "test-unit": "NODE_ENV=test mocha -u exports test/unit",
+    "test-integration": "NODE_ENV=test npm run migrate-up && NODE_ENV=test mocha -u exports test/integration",
+    "migrate-down": "knex migrate:rollback",
+    "migrate-up": "knex migrate:latest",
+    "migration-create": "knex migrate:make"
   },
   "author": "Mayank Saxena",
   "license": "ISC",
   "dependencies": {
     "akaya": "^4.0.1",
     "bissle": "^3.0.1",
+    "boom": "^7.3.0",
     "config": "1.30.0",
     "google-distance": "^1.0.1",
-    "google-distance-matrix": "^1.1.1",
     "hapi": "^18.0.0",
     "joi": "14.0.0",
     "knex": "^0.16.3",
     "lodash": "^4.17.11",
     "mysql": "^2.16.0",
-    "mysql2": "^1.6.4",
     "objection": "^1.5.3",
     "objection-db-errors": "1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "eslint": "^5.7.0",
+    "prettier": "1.14.3"
   }
 }
