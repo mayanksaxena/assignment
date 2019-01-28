@@ -1,7 +1,7 @@
 const TABLE_NAME = "orders";
 
-exports.up = knex =>
-    knex.schema.createTable(TABLE_NAME, table => {
+exports.up = (knex) =>
+    knex.schema.createTable(TABLE_NAME, (table) => {
         table
             .increments("id")
             .unsigned()
@@ -17,4 +17,4 @@ exports.up = knex =>
         table.dateTime("updatedAt").nullable();
     });
 
-exports.down = knex => knex.schema.dropTable(TABLE_NAME);
+exports.down = (knex) => knex.schema.dropTable(TABLE_NAME);

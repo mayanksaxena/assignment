@@ -4,7 +4,7 @@ module.exports = {
             host: process.env.DB_HOSTNAME || "localhost",
             database: "assignment_test",
             user: "root",
-            password: "rootroot"
-        }
-    }
+            password: "rootroot",
+        },
+    },
 };

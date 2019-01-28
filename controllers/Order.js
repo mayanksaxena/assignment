@@ -1,29 +1,33 @@
 const Joi = require("joi");
 const Boom = require("boom");
 const Order = require("../models/Order");
-const { getDistance, checkLatLong, errorFormatter } = require("../helpers/Order");
+const {
+    getDistance,
+    checkLatLong,
+    errorFormatter,
+} = require("../helpers/Order");
 
 const list = async (request, h) => {
     const {
-        query: { page, limit = 10 }
+        query: { page, limit = 10 },
     } = request;
     const pageForORM = page ? page - 1 : 0;
     try {
         const orders = await Order.query()
             .context({
-                request
+                request,
             })
             .page(pageForORM, limit);
         return h.bissle(
             {
                 items: {
                     results: orders.results.map(
-                        item => Joi.validate(item, Order.responseSchema).value
-                    )
-                }
+                        (item) => Joi.validate(item, Order.responseSchema).value
+                    ),
+                },
             },
             {
-                total: orders.total
+                total: orders.total,
             }
         );
     } catch (err) {
@@ -35,9 +39,9 @@ const create = async (request, h) => {
     const { origin, destination } = request.payload;
     if (
         origin instanceof Array &&
-    destination instanceof Array &&
-    checkLatLong(origin[0], origin[1]) &&
-    checkLatLong(destination[0], destination[1])
+		destination instanceof Array &&
+		checkLatLong(origin[0], origin[1]) &&
+		checkLatLong(destination[0], destination[1])
     ) {
         try {
             const { distanceValue } = await getDistance(origin, destination);
@@ -45,12 +49,12 @@ const create = async (request, h) => {
                 origin: origin.toString(),
                 destination: destination.toString(),
                 distance: distanceValue,
-                status: "UNASSIGNED"
+                status: "UNASSIGNED",
             });
             return {
                 id: newOrder.id,
                 status: newOrder.status,
-                distance: newOrder.distance
+                distance: newOrder.distance,
             };
         } catch (err) {
             return errorFormatter(Boom.badImplementation(err));
@@ -69,7 +73,7 @@ const update = async (request, h) => {
             .andWhere("status", "UNASSIGNED");
         if (order) {
             return {
-                status: "SUCCESS"
+                status: "SUCCESS",
             };
         }
         return errorFormatter(Boom.forbidden("ORDER_ALREADY_BEEN_TAKEN"));
@@ -80,5 +84,5 @@ const update = async (request, h) => {
 module.exports = {
     create,
     list,
-    update
+    update,
 };

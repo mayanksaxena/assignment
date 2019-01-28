@@ -13,7 +13,7 @@ const getDistance = async (origin, destination) => {
             {
                 index: 1,
                 origin: origin.toString(),
-                destination: destination.toString()
+                destination: destination.toString(),
             },
             (err, data) => {
                 if (err) {
@@ -30,11 +30,14 @@ const checkLatLong = (lat, lon) => {
 };
 
 const errorFormatter = (error) => {
-    if (get(error, 'output.payload.error')) {
-        error.output.payload.error = get(error, "output.payload.message", "UNKNOWN_ERROR");
+    if (get(error, "output.payload.error")) {
+        error.output.payload.error = get(
+            error,
+            "output.payload.message",
+            "UNKNOWN_ERROR"
+        );
     }
     return error;
-    
 };
 
 module.exports = {

@@ -5,7 +5,7 @@ chai.use(chaiHttp);
 const server = "localhost:8080";
 
 describe("GET /", () => {
-    it("should return 404 for Non configured Urls", done => {
+    it("should return 404 for Non configured Urls", (done) => {
         chai
             .request(server)
             .get("/")
@@ -17,13 +17,13 @@ describe("GET /", () => {
 });
 
 describe("/POST orders", () => {
-    it("should return 500 with invalid format", done => {
+    it("should return 500 with invalid format", (done) => {
         chai
             .request(server)
             .post("/orders")
             .send({
                 origin: ["98", "77.111761"],
-                destination: ["28.530264", "77.111761"]
+                destination: ["28.530264", "77.111761"],
             })
             .end((err, res) => {
                 expect(res).to.have.status(400);
@@ -31,13 +31,13 @@ describe("/POST orders", () => {
             });
     });
 
-    it("should create order with valid request", done => {
+    it("should create order with valid request", (done) => {
         chai
             .request(server)
             .post("/orders")
             .send({
                 origin: ["28.58484", "77.111761"],
-                destination: ["28.530264", "77.111761"]
+                destination: ["28.530264", "77.111761"],
             })
             .end((err, res) => {
                 expect(res).to.have.status(200);
@@ -46,13 +46,13 @@ describe("/POST orders", () => {
             });
     });
 
-    it("should return response status UNASSIGNED for new order", done => {
+    it("should return response status UNASSIGNED for new order", (done) => {
         chai
             .request(server)
             .post("/orders")
             .send({
                 origin: ["28.530264", "77.111761"],
-                destination: ["28.530264", "77.111761"]
+                destination: ["28.530264", "77.111761"],
             })
             .end((err, res) => {
                 expect(res).to.have.status(200);
@@ -63,12 +63,12 @@ describe("/POST orders", () => {
 });
 
 describe("/PATCH /orders/:id", () => {
-    it("should return error for order not found", done => {
+    it("should return error for order not found", (done) => {
         chai
             .request(server)
             .patch("/orders/9999")
             .send({
-                status: "taken"
+                status: "taken",
             })
             .end((err, res) => {
                 expect(res).to.have.status(400);
@@ -76,20 +76,20 @@ describe("/PATCH /orders/:id", () => {
             });
     });
 
-    it("should return 500 for bad format", done => {
+    it("should return 500 for bad format", (done) => {
         chai
             .request(server)
             .post("/orders")
             .send({
                 origin: ["28.530264", "77.111761"],
-                destination: ["28.530264", "77.111761"]
+                destination: ["28.530264", "77.111761"],
             })
             .end((err, res) => {
                 chai
                     .request(server)
                     .patch("/orders/" + res.body.id)
                     .send({
-                        wrong_parm: "INVALID_STATUS"
+                        wrong_parm: "INVALID_STATUS",
                     })
                     .end((err, res) => {
                         expect(res).to.have.status(400);
@@ -97,20 +97,20 @@ describe("/PATCH /orders/:id", () => {
                     });
             });
     });
-    it("should return success for updating status to taken", done => {
+    it("should return success for updating status to taken", (done) => {
         chai
             .request(server)
             .post("/orders")
             .send({
                 origin: ["28.530264", "77.111761"],
-                destination: ["28.530264", "77.111761"]
+                destination: ["28.530264", "77.111761"],
             })
             .end((err, res) => {
                 chai
                     .request(server)
                     .patch("/orders/" + res.body.id)
                     .send({
-                        status: "TAKEN"
+                        status: "TAKEN",
                     })
                     .end((err, result) => {
                         expect(result).to.have.status(200);
@@ -121,7 +121,7 @@ describe("/PATCH /orders/:id", () => {
 });
 
 describe("GET /", () => {
-    it("should return maximum two orders (limit=2)", done => {
+    it("should return maximum two orders (limit=2)", (done) => {
         chai
             .request(server)
             .get("/orders?page=1&limit=2")
@@ -132,7 +132,7 @@ describe("GET /", () => {
             });
     });
 
-    it("should return wrong page datatype error with (page=abc)", done => {
+    it("should return wrong page datatype error with (page=abc)", (done) => {
         chai
             .request(server)
             .get("/orders?page=abc&limit=1")
