@@ -2,7 +2,7 @@
 
 const Hapi = require("hapi");
 const bissle = require("bissle");
-const akaya1 = require("akaya");
+const akaya = require("akaya");
 
 const { create, list, update } = require("./controllers/Order");
 
