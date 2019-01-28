@@ -1,10 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
-const { merge }  = require('lodash');
 const bissle = require('bissle');
 const akaya = require('akaya');
-const { getPaginationConfig } = require('./helpers/pagination');
 const { create, list, update } = require('./controllers/Order');
 
 // Create a server with a host and port
