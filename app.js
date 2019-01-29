@@ -1,42 +1,14 @@
-"use strict";
-
 const Hapi = require("hapi");
 const bissle = require("bissle");
 const akaya = require("akaya");
-
-const { create, list, update } = require("./controllers/Order");
+const routes = require("./routes");
 
 // Create a server with a host and port
 const server=Hapi.server({
-    host:"localhost",
     port:8080
 });
 
-// Add the route
-server.route({
-    method:"POST",
-    path:"/orders",
-    handler: create
-});
-server.route({
-    method:"GET",
-    path:"/orders",
-    config: {
-        id: "getOrders",
-        tags: ["api"],
-        handler: list,
-        validate: {
-            options: {
-                stripUnknown: false,
-            },
-        },
-    }
-});
-server.route({
-    method:"PATCH",
-    path:"/orders/{id}",
-    handler: update
-});
+routes.init(server);
 
 // Start the server
 const start =  async function() {

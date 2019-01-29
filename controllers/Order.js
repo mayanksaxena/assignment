@@ -69,6 +69,10 @@ const create = async (request, h) => {
 const update = async (request, h) => {
     const { id } = request.params;
     const { status } = request.payload;
+    const orderData = await Order.query().findById(id);
+    if (!orderData) {
+        return errorFormatter(Boom.notFound("ORDER_NOT_FOUND"));
+    }
     if (status === "TAKEN") {
         const order = await Order.query()
             .update({ status: "TAKEN" })
