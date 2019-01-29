@@ -3,9 +3,9 @@ echo 'Starting docker'
 sudo docker-compose up -d
 
 echo 'Installing dependencies...'
-sleep 150
+sleep 60
 
 # Start Test Cases
-docker exec -it order npm test
+docker exec -it order_service npm test
 
 exit 0
