@@ -44,11 +44,11 @@ const create = async (request, h) => {
 		checkLatLong(destination[0], destination[1])
     ) {
         try {
-            const { distanceValue } = await getDistance(origin, destination);
+            const distance = await getDistance(origin, destination);
             const newOrder = await Order.query().insertGraph({
                 origin: origin.toString(),
                 destination: destination.toString(),
-                distance: distanceValue,
+                distance,
                 status: "UNASSIGNED",
             });
             return {
@@ -57,6 +57,9 @@ const create = async (request, h) => {
                 distance: newOrder.distance,
             };
         } catch (err) {
+            if (err.message === "ZERO_RESULTS") {
+                return errorFormatter(Boom.badRequest("ZERO_RESULTS"));
+            }
             return errorFormatter(Boom.badImplementation(err));
         }
     }
