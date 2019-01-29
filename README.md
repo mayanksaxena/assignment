@@ -11,7 +11,7 @@ npm start
 
 1.  Clone the repo
 2.  Set Google Distance API key in docker-compose file line no. 25 i.e. MAP_KEY
-3.  Run `./start.sh` to download Docker CE and Docker Compose if not exist
+3.  Run `./start.sh` to start the containers and run test cases
     You may need to grant executable permission to 'start.sh' file
     On Ubuntu: sudo chmod +x start.sh
     after installation it will start two containers:
@@ -58,3 +58,6 @@ npm start
 - Using prettier for code formatting https://prettier.io/
 ## Swagger ##
 - Using "hapi-swagger" for api documentation , can be reached at "http://localhost:8080/documentation" once docker is up
+## Assumptions ##
+- Authentication is not needed
+- List API's response is a bit different as results are in items Object.
