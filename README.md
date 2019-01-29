@@ -1,4 +1,4 @@
-## Welcome to the ORDERS API PROJECT
+## ORDERS API PROJECT
 
 By Using this app one can create, list and update orders.
 
