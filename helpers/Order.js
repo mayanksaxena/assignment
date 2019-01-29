@@ -9,10 +9,16 @@ const mapApiKey = config.get("googleMapKey");
 
 const getDistance = async (origin, destination) => {
     try {
-        const response = await fetch(`${mapApiBase}origins=${origin.toString()}&destinations=${destination.toString()}&key=${mapApiKey}`);
+        const response = await fetch(
+            `${mapApiBase}&origins=${origin.toString()}&destinations=${destination.toString()}&key=${mapApiKey}`
+        );
         const data = await response.json();
-        if(get(data, "rows[0].elements[0].status") !== "OK") {
-            throw new Error("ZERO_RESULTS");
+        const status = get(data, "rows[0].elements[0].status");
+        if (get(data, "error_message")) {
+            throw new Error(data.eror_message);
+        }
+        if (status !== "OK") {
+            throw new Error(status);
         }
         return get(data, "rows[0].elements[0].distance.value");
     } catch (err) {

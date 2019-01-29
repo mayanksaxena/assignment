@@ -71,7 +71,7 @@ describe("/PATCH /orders/:id", () => {
                 status: "taken",
             })
             .end((err, res) => {
-                expect(res).to.have.status(400);
+                expect(res).to.have.status(404);
                 done();
             });
     });

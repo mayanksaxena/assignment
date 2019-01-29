@@ -19,7 +19,7 @@ module.exports = {
             tableName: "knex_migrations",
         },
     },
-    googleMapKey:
-        process.env.MAP_KEY || "AIzaSyBz_qEtbveatUdOjFgEBAqLWh2nvSrbe-4",
-    googleMapApi: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&"
+    googleMapKey: process.env.MAP_KEY || "",
+    googleMapApi:
+		"https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial",
 };

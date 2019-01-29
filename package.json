@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
     "lint": "eslint .",
-    "prettier": "prettier --write \"./{test,config,controllers,helpers,migrations}/**/*.js\"",
+    "prettier": "prettier --write \"./{test,config,controllers,helpers,migrations,routes,models}/**/*.js\"",
     "test-unit": "NODE_ENV=test mocha -u exports test/unit",
     "test-integration": "NODE_ENV=test npm run migrate-up && NODE_ENV=test mocha -u exports test/integration",
     "migrate-down": "knex migrate:rollback",
@@ -21,13 +21,16 @@
     "boom": "^7.3.0",
     "config": "1.30.0",
     "hapi": "^18.0.0",
+    "hapi-swagger": "^9.3.0",
+    "inert": "^5.1.2",
     "joi": "14.0.0",
     "knex": "^0.16.3",
     "lodash": "^4.17.11",
     "mysql": "^2.16.0",
     "node-fetch": "^2.3.0",
     "objection": "^1.5.3",
-    "objection-db-errors": "1.0.0"
+    "objection-db-errors": "1.0.0",
+    "vision": "^5.4.4"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
