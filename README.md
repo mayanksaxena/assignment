@@ -61,3 +61,4 @@ npm start
 ## Assumptions ##
 - Authentication is not needed
 - List API's response is a bit different as results are in items Object.
+- Docker is installed on the system.
