@@ -48,6 +48,9 @@ module.exports = {
                 notes: "Returns status Success if order is not taken or error",
                 tags: ["api"],
                 validate: {
+                    params: {
+                        id: Joi.number()
+                    },
                     payload: {
                         status: Joi.string().required(),
                     },
