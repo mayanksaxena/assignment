@@ -14,8 +14,8 @@ const getDistance = async (origin, destination) => {
         );
         const data = await response.json();
         const status = get(data, "rows[0].elements[0].status");
-        if (get(data, "error_message")) {
-            throw new Error(data.eror_message);
+        if (get(data, "error_message") && get(data, "status")) {
+            throw new Error(data.status);
         }
         if (status !== "OK") {
             throw new Error(status);

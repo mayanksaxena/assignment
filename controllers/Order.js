@@ -57,8 +57,8 @@ const create = async (request, h) => {
                 distance: newOrder.distance,
             };
         } catch (err) {
-            if (err.message === "ZERO_RESULTS") {
-                return errorFormatter(Boom.badRequest("ZERO_RESULTS"));
+            if (["ZERO_RESULTS", "REQUEST_DENIED"].includes(err.message)) {
+                return errorFormatter(Boom.badRequest(err.message));
             }
             return errorFormatter(Boom.badImplementation(err));
         }
