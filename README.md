@@ -37,7 +37,7 @@ npm start
 
 **./**
 
-- `controllers` are Express.js route handlers that have `request`, `response`, and `next` parameters.
+- `controllers` are route handlers that have `request` and `h` parameters.
 - `helpers` are raw JS " utility functions for use across the app
 - `models` are [MySql schema] definitions and associated models
 - `routes` are RESTful route declarations using [hapi server module]
