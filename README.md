@@ -62,3 +62,5 @@ npm start
 - Authentication is not needed
 - List API's response is a bit different as results are in items Object.
 - Docker is installed on the system.
+- I havent used pm2 or forver in docker setup to run it because docker will restart the container itself so i am using node command to run the application.
+- I havent put much comments in the code as its readable itself.
