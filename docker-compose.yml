@@ -18,8 +18,8 @@ services:
     build: ./
     container_name: order_service
     environment:
-      - NODE_ENV=development
-      - LOG_ENV=development
+      - NODE_ENV=production
+      - LOG_ENV=production
       - PORT=8080
       - DB_HOSTNAME=mysql
       - MAP_KEY=AIzaSyBz_qEtbveatUdOjFgEBAqLWh2nvSrbe-4
