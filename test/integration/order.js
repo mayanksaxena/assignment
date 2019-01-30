@@ -17,7 +17,7 @@ describe("GET /", () => {
 });
 
 describe("/POST orders", () => {
-    it("should return 500 with invalid format", (done) => {
+    it("should return 400 with invalid format", (done) => {
         chai
             .request(server)
             .post("/orders")
@@ -76,7 +76,7 @@ describe("/PATCH /orders/:id", () => {
             });
     });
 
-    it("should return 500 for bad format", (done) => {
+    it("should return 400 for bad format", (done) => {
         chai
             .request(server)
             .post("/orders")
