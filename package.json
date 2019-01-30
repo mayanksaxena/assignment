@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
     "lint": "eslint .",
+    "start": "if [$NODE_ENV == 'production']; then node app.js; else nodemon app.js; fi",
     "prettier": "prettier --write \"./{test,config,controllers,helpers,migrations,routes,models}/**/*.js\"",
     "test-unit": "NODE_ENV=test mocha -u exports test/unit",
     "test-integration": "NODE_ENV=test npm run migrate-up && NODE_ENV=test mocha -u exports test/integration",

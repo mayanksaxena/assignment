@@ -30,7 +30,7 @@ class Order extends Model {
 
     static get attributes() {
         return Joi.object().keys({
-            distance: Joi.string(),
+            distance: Joi.number().integer(),
             origin: Joi.string(),
             destination: Joi.string(),
             id: Joi.number(),

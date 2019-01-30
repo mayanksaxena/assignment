@@ -6,7 +6,6 @@ COPY docker-entrypoint.sh /usr/local/bin
 
 WORKDIR /opt/app
 
-RUN yarn global add nodemon && \
-    chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-CMD ["nodemon", "app.js"]
+CMD ["node", "app.js"]
