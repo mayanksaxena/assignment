@@ -2,6 +2,7 @@
   "name": "assignment_1.0",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "app.js",
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
